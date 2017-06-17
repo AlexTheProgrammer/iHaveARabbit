@@ -1,6 +1,10 @@
 function runGame() {
 	//need resources setup 
 	var canvas = document.getElementById("game-container");
+	var w = window.innerWidth;
+	var h = window.innerHeight;
+	canvas.width = w;
+	canvas.height = h;
 	context = canvas.getContext('2d');
 	var base_image = new Image();
 	base_image.src = "../resources/bunny.png";
@@ -18,6 +22,7 @@ function startGame(canvas, base_image) {
 	var dy = 1;
 	var bunnySpeed = 3
 	var randomWalkRate = 2;
+	var maxBunnies = 10;
 
 
 	function bunny(xCoord, yCoord) {
@@ -33,13 +38,12 @@ function startGame(canvas, base_image) {
 	var bunnies = []
 	var bunny0 = new bunny(100, 100);
 
-//	bunnies.append(bunny0)
+	bunnies.push(bunny0)
 
 	add_image(bunny0);
 	
 
 	function add_image(bunny) {
-		context.clearRect(0, 0, canvas.width, canvas.height)
 		context.drawImage(base_image, bunny.xCoord, bunny.yCoord, bunny.width, bunny.height);
 	}
 
@@ -57,15 +61,24 @@ function startGame(canvas, base_image) {
 
 	function bunnyGenerator()  {
 		xCoord = Math.random() * canvas.width;
-		yCoord = Math.random() * cnavas.height;	
+		yCoord = Math.random() * canvas.height;	
 		return new bunny(xCoord, yCoord);
 	}
 
 	setInterval(function() {
-			
-		moveBunny(bunny0);
-		add_image(bunny0)
+
+		context.clearRect(0, 0, canvas.width, canvas.height)
+
+		if (bunnies.length < maxBunnies) { 
+			bunnies.push(new bunny(canvas.width * Math.random(), canvas.height * Math.random()));	
 		}
+
+		console.log(bunnies.length)
+		for (var i = 0; i < bunnies.length; i++) {
+			moveBunny(bunnies[i]);
+			add_image(bunnies[i])
+		}
+	}
 	, bunnySpeed);
 }
 
