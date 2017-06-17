@@ -7,7 +7,7 @@ function runGame() {
 	canvas.height = h;
 	context = canvas.getContext('2d');
 	var base_image = new Image();
-	base_image.src = "../resources/bunny.png";
+	base_image.src = "./resources/bunny.png";
 
 	base_image.onload = function() {
 		startGame(canvas, base_image);
