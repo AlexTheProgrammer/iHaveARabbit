@@ -1,0 +1,14 @@
+{
+  "name": "Start on Heroku: Go",
+  "description": "I have a rabbit",
+  "keywords": [
+    "iHaveARabbit",
+    "go",
+    "sample",
+    "example"
+  ],
+  "image": "heroku/go:1.6",
+  "mount_dir": "src/github.com/alextheprogrammer/iHaveARabbit",
+  "website": "http://github.com/alextheprogrammer/iHaveARabbit",
+  "repository": "http://github.com/heroku/go-getting-started"
+}
